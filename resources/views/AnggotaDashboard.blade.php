@@ -9,12 +9,12 @@
 @endsection
 
 @section('judul')
-   <h2 class="text-primary"> Selamat Datang, {{ Auth::user()->name }}</h2>
+    <h2 class="text-primary"> Selamat Datang, {{ Auth::user()->name }}</h2>
 @endsection
 
 @section('content')
-<div class="row mb-3">
-<div class="col-xl-3 col-md-6 mb-4">
+    <div class="row mb-3">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card h-100 bg-gradient-primary">
                 <div class="card-body">
                     <div class="row align-items-center">
@@ -69,7 +69,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-sm text-light font-weight-bold text-uppercase mb-1" style="font-size:.8`rem;">Pinjaman Saat ini</div>
+                            <div class="text-sm text-light font-weight-bold text-uppercase mb-1" style="font-size:.8`rem;">
+                                Pinjaman Saat ini</div>
                             <div class="h5 mb-0 mr-3 font-weight-bold text-light">{{ $pinjamanUser }}</div>
                             <div class="button mt-2"><a href="/peminjaman" class="text-light">Lihat</a></div>
                         </div>
@@ -83,15 +84,18 @@
     </div>
 
     <div class="card bg-gradient-secondary">
-    <div class="container">
-        <h3 class="text-light"> <i class="fa-solid fa-circle-info text-light my-3"></i>  Informasi Aturan Peminjaaman</h3>
-        <ol class=text-light>
-            <li class=text-light>Waktu peminjaman maksimal 1 minggu</li>
-            <li class=text-light>Setiap anggota hanya dapat meminjam maksima 3 buku</li>
-            <li class=text-light>Jika pengenbalian buku lebih dari waktu yang ditentukan akan diberikan denda setiap buku Rp.15.000/minggu.</li>
-            <li class=text-light>Jika telah meminjam buku,silahkan ke tempat petugas untuk melakukan konfirmasi</li>
-            <li class=text-light>Jika Terlambat mengembalikan buku dan mendapat denda, maka wajib langsung membayar pada petugas saat mengembalikan buku</li>
-        </ol>
-    </div>
+        <div class="container">
+            <h3 class="text-light"> <i class="fa-solid fa-circle-info text-light my-3"></i> Informasi Aturan Peminjaaman
+            </h3>
+            <ol class=text-light>
+                <li class=text-light>Waktu peminjaman 1 minggu</li>
+                <li class=text-light>Setiap anggota hanya dapat meminjam maksimal 3 buku</li>
+                <li class=text-light>Jika pengenbalian buku lebih dari waktu yang ditentukan akan diberikan denda setiap
+                    buku Rp.1.000/hari.</li>
+                <li class=text-light>Jika telah meminjam buku,silahkan ke tempat petugas untuk melakukan konfirmasi</li>
+                <li class=text-light>Jika Terlambat mengembalikan buku dan mendapat denda, maka wajib langsung membayar pada
+                    petugas saat mengembalikan buku</li>
+            </ol>
+        </div>
     </div>
 @endsection

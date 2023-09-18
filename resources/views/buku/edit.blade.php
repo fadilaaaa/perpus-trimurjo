@@ -32,7 +32,8 @@
 
                 <div class="form-group mb-3">
                     <label for="kode_buku"class="text-primary font-weight-bold"> Kode Buku</label>
-                    <input type="text" name="kode_buku" class="form-control" value="{{ old('kode_buku',$buku->kode_buku) }}">
+                    <input type="text" name="kode_buku" class="form-control"
+                        value="{{ old('kode_buku', $buku->kode_buku) }}">
                 </div>
 
                 @error('kode_buku')
@@ -43,7 +44,8 @@
                     <label for="kategori" class="text-primary font-weight-bold">Kategori</label>
                     <select class="form-control" name="kategori_buku[]" id="multiselect" multiple="multiple">
                         @forelse ($kategori as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            <option value="{{ $item->id }}"
+                                @if (in_array($item->id, $buku->kategori_buku->pluck('id')->toArray())) selected="selected" @endif>{{ $item->nama }}</option>
                         @empty
                             tidak ada kategori
                         @endforelse
@@ -52,6 +54,15 @@
                 </div>
 
                 @error('kategori')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
+                <div class="form-group mb-3">
+                    <label for="stok" class="text-primary font-weight-bold">stok</label>
+                    <input type="number" name="stok" class="form-control" value="{{ old('stok', $buku->stok) }}">
+                </div>
+
+                @error('stok')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
@@ -94,6 +105,9 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
+                <div class="col-2">
+                    <img class="card-img-top" style="max-height:180px;" src="{{ asset('/images/' . $buku->gambar) }}">
+                </div>
                 <div class="form-group">
                     <label for="photoProfile" class="text-md text-primary font-weight-bold">Tambah Sampul Buku</label>
                     <div class="custom-file">

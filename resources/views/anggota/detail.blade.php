@@ -30,7 +30,7 @@
         });
     </script>
 @endpush
-
+{{-- @dd($profile) --}}
 @section('content')
     <div class="card">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -38,11 +38,11 @@
         </div>
         <div class="row d-flex" style="gap:3rem">
             <div class="col-2 ml-5 my-4">
-                @if ($profile->photoProfile !=null)
-                <img src="{{ asset('/images/photoProfile/' . $profile->photoProfile) }}"
+                @if ($profile->photoProfile != null)
+                    <img src="{{ asset('/images/photoProfile/' . $profile->photoProfile) }}"
                         style="width:150px;height:150px;border-radius:100px">
                 @else
-                <img src="{{ asset('template/img/boy.png') }}" style="width:100px;height:100px;border-radius:50px">
+                    <img src="{{ asset('template/img/boy.png') }}" style="width:100px;height:100px;border-radius:50px">
                 @endif
             </div>
             <div class="col-4">
@@ -52,13 +52,13 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="npm" class="text-lg text-primary font-weight-bold">Nomor Induk Mahasiswa</label>
-                    <h4>{{ $profile->npm }}</h4>
+                    <label for="npm" class="text-lg text-primary font-weight-bold">Nomor Induk Siswa Nasional</label>
+                    <h4>{{ $profile->nisn }}</h4>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="prodi" class="text-lg text-primary font-weight-bold">Program Studi</label>
-                    <h4>{{ $profile->prodi }}</h4>
+                    <label for="prodi" class="text-lg text-primary font-weight-bold">Nomor Anggota</label>
+                    <h4>{{ $profile->no_anggota }}</h4>
                 </div>
 
                 <div class="form-group mb-3">
@@ -68,7 +68,7 @@
 
                 <div class="form-group mb-3">
                     <label for="prodi" class="text-lg text-primary font-weight-bold">Nomor Telephone</label>
-                    <h4>{{ $profile->noTelp }}</h4>
+                    <h4>{{ $profile->no_telp }}</h4>
                 </div>
 
             </div>
@@ -81,7 +81,8 @@
     <div class="col-lg-auto">
         <div class="card mb-4">
             <div class="table-responsive p-3">
-                <table class="table align-items-center justify-content-center table-flush table-hover" id="dataTableHover" style="font-size: .7rem">
+                <table class="table align-items-center justify-content-center table-flush table-hover" id="dataTableHover"
+                    style="font-size: .7rem">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">No.</th>
@@ -91,21 +92,22 @@
                             <th scope="col">Tanggal Pinjam</th>
                             <th scope="col">Tanggal Wajib Pengembalian</th>
                             <th scope="col">Tanggal Pengembalian</th>
+                            <th scope="col">Denda</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($pinjamanUser as $item )
-                        <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $item->user->name }}</td>
-                            <td>{{ $item->buku->judul }}</td>
-                            <td>{{ $item->buku->kode_buku }}</td>
-                            <td>{{ $item->tanggal_pinjam }}</td>
-                            <td>{{ $item->tanggal_wajib_kembali }}</td>
-                            <td>{{ $item->tanggal_pengembalian }}</td>
-                        </tr>
+                        @forelse ($pinjamanUser as $item)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $item->user->name }}</td>
+                                <td>{{ $item->buku->judul }}</td>
+                                <td>{{ $item->buku->kode_buku }}</td>
+                                <td>{{ $item->tanggal_pinjam }}</td>
+                                <td>{{ $item->tanggal_wajib_kembali }}</td>
+                                <td>{{ $item->tanggal_pengembalian }}</td>
+                                <td>Rp. {{ number_format($item->denda) }}</td>
+                            </tr>
                         @empty
-
                         @endforelse
                     </tbody>
                 </table>

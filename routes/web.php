@@ -36,13 +36,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('buku', BukuController::class);
 
-    // Route::resource('anggota', AnggotaController::class);
+    Route::resource('anggota', AnggotaController::class);
 
-    // Route::resource('profile', ProfileController::class)->only('index', 'update', 'edit');
+    Route::resource('profile', ProfileController::class)->only('index', 'update', 'edit');
 
     Route::resource('peminjaman', RiwayatPinjamController::class);
 
-    // Route::get('/cetaklaporan', CetakLaporanController::class);
+    Route::get('/cetaklaporan', CetakLaporanController::class);
 
     Route::get('/pengembalian', [PengembalianController::class, 'index']);
 

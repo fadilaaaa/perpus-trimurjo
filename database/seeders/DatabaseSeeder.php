@@ -121,6 +121,7 @@ class DatabaseSeeder extends Seeder
             'Pengarang' => 'Andrea Hirata',
             'Penerbit' => 'Bentang Pustaka',
             'tahun_terbit' => '2005',
+            'stok' => 3,
             'deskripsi' => 'Laskar Pelangi adalah novel pertama karya Andrea Hirata yang diterbitkan oleh Bentang Pustaka pada tahun 2005. Novel ini bercerita tentang kehidupan 10 anak dari keluarga miskin yang bersekolah (SD dan SMP) di sebuah sekolah Muhammadiyah di Belitung yang penuh dengan keterbatasan.
 
         Mereka bersekolah dan belajar pada kelas yang sama dari kelas 1 SD sampai kelas 3 SMP, dan menyebut diri mereka sebagai Laskar Pelangi. Pada bagian-bagian akhir cerita, anggota Laskar Pelangi bertambah satu anak perempuan yang bernama Flo, seorang murid pindahan. Keterbatasan yang ada bukan membuat mereka putus asa, tetapi malah membuat mereka terpacu untuk dapat melakukan sesuatu yang lebih baik.
@@ -139,6 +140,7 @@ class DatabaseSeeder extends Seeder
             'Pengarang' => 'Tere Liye',
             'Penerbit' => 'Gramedia Pustaka',
             'tahun_terbit' => '2016',
+            'stok' => 2,
             'deskripsi' => 'Pada 2042, dunia telah memasuki era di mana peran manusia telah digantikan oleh ilmu pengeahuan dan teknologi canggih. Cerita berfokus pada karakter Lail, gadis berusia 13 tahun, yang pada hari pertamanya di sekolah harus mengalami bencana gunung meletus dan gempa dahsyat. Bencana ini mnegahancurkan kota tempat tinggalnya serta merenggut nyawa kedua orangtuanya. Beruntungnya, seorang pemuda berusia 15 tahun bernama Esok datang menolong dan menyelamtakan Lail. Tidak seperti Lail, Esok masih memilki seroang ibu. Namun, akibat bencana tersebut, kedua kakinya harsu diamputasi.
         Artikel ini telah tayang di Katadata.co.id dengan judul "Menilik Sinopsis Novel Hujan Tere Liye yang Sarat Nilai Kehidupan" , https://katadata.co.id/agung/berita/63203415cd124/menilik-sinopsis-novel-hujan-tere-liye-yang-sarat-nilai-kehidupan
         Penulis: Destiara Anggita Putri
@@ -149,6 +151,7 @@ class DatabaseSeeder extends Seeder
             'Judul' => 'Janji',
             'Pengarang' => 'Tere Liye',
             'Penerbit' => 'Tere Liye',
+            'stok' => 1,
             'tahun_terbit' => '2021',
             'deskripsi' => 'Kisah ini tentang JANJI.
 
@@ -168,6 +171,7 @@ class DatabaseSeeder extends Seeder
             'Pengarang' => 'Lamhot Sitorus',
             'Penerbit' => 'Andi',
             'tahun_terbit' => '2015',
+            'stok' => 2,
             'deskripsi' => 'Buku ini dirancang untuk dapat digunakan oleh mahasiswa Program Studi Ilmu Komputer, Teknik Informatika, Sistem Informasi, Manajemen Informatika, Sistem Komputer atau bahkan mahasiswa program studi lain yang mempelajari Algoritma Pemrograman. Algoritma Pemrograman merupakan mata kuliah dasar bagi seorang mahasiswa untuk memulai masuk dalam dunia pemrograman. Algoritma Pemrograman akan memberikan konsep berpikir untuk menyelesaikan suatu masalah menjadi suatu program tanpa mempermasalahkan bahasa pemrograman sebagai tools yang akan digunakan untuk mengimplementasikannya. Suatu algoritma akan dapat diimplementasikan dalam bahasa pemrograman Pascal, C/C++, Visual C, Visual Basic, Java dan lain-lain.'
         ]);
         Buku::create([
@@ -176,6 +180,7 @@ class DatabaseSeeder extends Seeder
             'Pengarang' => 'Syafei Karim',
             'Penerbit' => 'Tanesa',
             'tahun_terbit' => '2021',
+            'stok' => 1,
             'deskripsi' => 'Pemrograman Berorientasi Objek (PBO) adalah salah satu konsep pemrograman yang harus dipahami dan dimengerti oleh seorang programmer. PBO merupakan salah satu mata kuliah yang diajarkan pada mahasiswa khususnya di bidang komputer. Buku ini menjelaskan konsep PBO den`gan menggunakan bahasa pemrograman Java. Ruang lingkup pembahasannya meliputi dasar-dasar pemrograman java dan konsep dari PBO. Pada bagian pertama penulis menjelaskan dasar-dasar pemrograman dari bahasa pemrograman java. Mulai dari menggunakan tipe data, deklarasi variabel, penggunaan statement percabangan, penggunaan iterasi, hingga pendeklarasian array. Pada bagian kedua penulis menjelaskan konsep dasar dari PBO. Konsep-konsep tersebut terdiri dari class & object, enkapsulasi, inheritance, polimorfisme, hingga penggunaan kelas abstrak dan interface (sebatik) ( tanesa )'
         ]);
         Buku::create([
@@ -184,6 +189,7 @@ class DatabaseSeeder extends Seeder
             'Pengarang' => 'Mundzir MF',
             'Penerbit' => 'Anak Hebat Indonesia',
             'tahun_terbit' => '2018',
+            'stok' => 1,
             'deskripsi' => 'Saat ini, PHP banyak dipakai untuk membuat program situs web dinamis. Contoh aplikasi program PHP adalah forum (phpBB) dan MediaWiki (software di belakang Wikipedia). Sedangkan, Mambo, Joomla!, Postnuke, Xaraya, dan lain-lain merupakan contoh aplikasi yang lebih kompleks berupa CMS dan dibangun menggunakan PHP.
 
         PHP sebagai sekumpulan skrip atau bahasa program memiliki fungsi utama, yaitu mampu mengumpulkan dan mengevaluasi hasil survey atau bentuk apapun ke server  database dan pada tahap selanjutnya akan menciptakan efek beruntun.'

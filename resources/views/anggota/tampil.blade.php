@@ -42,33 +42,36 @@
                 <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col">No.</th>
+                            <th scope="col">No Anggota</th>
                             <th scope="col">Nama Anggota</th>
-                            <th scope="col">NPM</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">NISN</th>
+                            <th scope="col">username</th>
                             <th scope="col">Tombol Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($anggota as $key => $item)
                             <tr>
-                                <th scope="row">{{ $key }}</th>
+                                <th>{{ $item->profile->no_anggota }}</th>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->profile->npm }}</td>
-                                <td>{{ $item->email }}</td>
+                                <td>{{ $item->profile->nisn }}</td>
+                                <td>{{ $item->username }}</td>
                                 <td>
 
                                     @if (Auth::user()->isAdmin == 1)
                                         <button class="btn btn-info"><a href="/anggota/{{ $item->id }}"
-                                                style="text-decoration: none; color:white;"><i class="fa-solid fa-circle-info"></i></a></button>
+                                                style="text-decoration: none; color:white;"><i
+                                                    class="fa-solid fa-circle-info"></i></a></button>
                                         <button class="btn btn-warning"><a href="/anggota/{{ $item->id }}/edit"
-                                                style="text-decoration: none;color:white"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                                                style="text-decoration: none;color:white"><i
+                                                    class="fa-solid fa-pen-to-square"></i></a></button>
                                         <button class="btn btn-danger"><a data-toggle="modal"
-                                                data-target="#DeleteModal{{ $item->id }}"><i class="fa-solid fa-trash"></i></a></button>
+                                                data-target="#DeleteModal{{ $item->id }}"><i
+                                                    class="fa-solid fa-trash"></i></a></button>
 
                                         <!--Delete Modal -->
-                                        <div class="modal fade" id="DeleteModal{{ $item->id }}" tabindex="-1" role="dialog"
-                                            aria-labelledby="ModalLabelDelete" aria-hidden="true">
+                                        <div class="modal fade" id="DeleteModal{{ $item->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="ModalLabelDelete" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

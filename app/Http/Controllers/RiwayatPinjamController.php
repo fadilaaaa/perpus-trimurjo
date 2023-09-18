@@ -90,7 +90,13 @@ class RiwayatPinjamController extends Controller
                 Peminjaman::create($request->all());
                 // Proses update tabel buku
                 $buku         = Buku::findOrFail($request->buku_id);
-                $buku->status = 'dipinjam';
+                $buku->stok   = $buku->stok - 1;
+                if ($buku->stok == 0) {
+                    $buku->status = 'Out Of Stock';
+                } else {
+                    $buku->status = 'In Stock';
+                }
+                // $buku->status = 'dipinjam';
                 $buku->save();
                 DB::commit();
 

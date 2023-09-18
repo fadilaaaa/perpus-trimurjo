@@ -18,6 +18,7 @@ class Buku extends Model
         'pengarang',
         'penerbit',
         'tahun_terbit',
+        'stok',
         'deskripsi',
         'gambar'
     ];
@@ -27,7 +28,7 @@ class Buku extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function kategori_buku():BelongsToMany
+    public function kategori_buku(): BelongsToMany
     {
         return $this->belongsToMany(Kategori::class, 'kategori_buku', 'buku_id', 'kategori_id');
     }

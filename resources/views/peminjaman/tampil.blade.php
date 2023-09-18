@@ -38,7 +38,11 @@
     @if (Auth::user()->isAdmin == 1)
         <div class="container">
             <a href="/peminjaman/create" class="btn btn-info mb-3 "><i class="fa-solid fa-plus"></i> tambah</a>
-            {{-- <a href="/cetaklaporan" class="btn btn-info mb-3 mx-2"><i class="fa-solid fa-print"></i> Cetak</a> --}}
+            <a href="/cetaklaporan" class="btn btn-info mb-3 mx-2"><i class="fa-solid fa-print"></i> Cetak seluruh</a>
+            <a href="/cetaklaporan?bulanIni=true" class="btn btn-info mb-3 mx-2"><i class="fa-solid fa-print"></i> Cetak
+                bulan
+                ini</a>
+
         </div>
         <div class="col-lg-auto">
             <div class="card mb-4">
@@ -115,6 +119,7 @@
                             <th scope="col">Tanggal Pinjam</th>
                             <th scope="col">Tanggal Wajib Pengembalian</th>
                             <th scope="col">Tanggal Pengembalian</th>
+                            <th scope="col">Denda</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -127,6 +132,7 @@
                                 <td>{{ $item->tanggal_pinjam }}</td>
                                 <td>{{ $item->tanggal_wajib_kembali }}</td>
                                 <td>{{ $item->tanggal_pengembalian }}</td>
+                                <td>Rp. {{ number_format($item->denda) }}</td>
                             </tr>
                         @empty
                         @endforelse

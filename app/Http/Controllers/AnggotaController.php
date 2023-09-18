@@ -21,10 +21,11 @@ class AnggotaController extends Controller
      */
     public function index()
     {
-        $iduser = Auth::id();
-        $user = User::all()->where('isAdmin','0');
-        $profile = Profile::where('users_id',$iduser)->first();
-        return view('anggota.tampil',['anggota'=>$user,'profile'=>$profile]);
+        $iduser  = Auth::id();
+        $user    = User::all()->where('isAdmin', '0');
+        $profile = Profile::where('users_id', $iduser)->first();
+        // dd($user[1]->profile);
+        return view('anggota.tampil', ['anggota' => $user, 'profile' => $profile]);
     }
 
     /**
@@ -34,10 +35,10 @@ class AnggotaController extends Controller
      */
     public function create()
     {
-        $iduser = Auth::id();
-        $user = User::all()->where('isAdmin','0');
-        $profile = Profile::where('users_id',$iduser)->first();
-        return view('anggota.tambah',['user'=>$user,'profile'=>$profile]);
+        $iduser  = Auth::id();
+        $user    = User::all()->where('isAdmin', '0');
+        $profile = Profile::where('users_id', $iduser)->first();
+        return view('anggota.tambah', ['user' => $user, 'profile' => $profile]);
     }
 
     /**
@@ -48,40 +49,42 @@ class AnggotaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=> 'required',
-            'npm'=> 'required|unique:profile',
-            'prodi'=> 'required',
-            'alamat'=> 'required',
-            'noTelp'=> 'required',
-            'email'=>'required|unique:users',
-            'password'=>'required|min:8',
-        ],
-        [
-            'name.required'=>"Nama tidak boleh kosong",
-            'npm.required'=>"Nomor Induk tidak boleh kosong",
-            'npm.unique'=>"NPM Telah Digunakan",
-            'prodi.required'=>"Prodi tidak boleh kosong",
-            'alamat.required'=>"Alamat tidak boleh kosong",
-            'noTelp.required'=>"Nomor Telepon tidak boleh kosong",
-            'email.required'=>"Email tidak boleh kosong",
-            'email.unique'=>"Email Telah Digunakan",
-            'password.required'=>"Password Tidak boleh kosong",
-            'password.min'=>"Password tidak boleh kurang dari 8 karakter"
-        ]);
+        $request->validate(
+            [
+                'name' => 'required',
+                'nisn' => 'required|unique:profile',
+                'no_anggota' => 'required',
+                'alamat' => 'required',
+                'no_telp' => 'required',
+                'username' => 'required|unique:users',
+                'password' => 'required|min:8',
+            ],
+            [
+                'name.required' => "Nama tidak boleh kosong",
+                'nisn.required' => "Nomor Induk tidak boleh kosong",
+                'nisn.unique' => "nisn Telah Digunakan",
+                'no_anggota.required' => "no_anggota tidak boleh kosong",
+                'alamat.required' => "Alamat tidak boleh kosong",
+                'no_telp.required' => "Nomor Telepon tidak boleh kosong",
+                'username.required' => "username tidak boleh kosong",
+                'username.unique' => "usernmae Telah Digunakan",
+                'password.required' => "Password Tidak boleh kosong",
+                'password.min' => "Password tidak boleh kurang dari 8 karakter"
+            ]
+        );
 
         $user = User::create([
             'name' => $request['name'],
-            'email' => $request['email'],
+            'username' => $request['username'],
             'password' => Hash::make($request['password']),
         ]);
 
         Profile::create([
-            'npm'=>$request['npm'],
-            'prodi'=>$request['prodi'],
-            'alamat'=>$request['alamat'],
-            'noTelp'=>$request['noTelp'],
-            'users_id'=>$user->id,
+            'nisn' => $request['nisn'],
+            'no_anggota' => $request['no_anggota'],
+            'alamat' => $request['alamat'],
+            'no_telp' => $request['no_telp'],
+            'users_id' => $user->id,
         ]);
 
         Alert::success('Success', 'Berhasil Menambah Anggota');
@@ -96,10 +99,10 @@ class AnggotaController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        $profile = Profile::where('users_id',$id)->first();
-        $pinjamanUser = Peminjaman::where('users_id',$user->id)->get();
-        return view('anggota.detail',['user'=>$user,'profile'=>$profile,'pinjamanUser'=>$pinjamanUser]);
+        $user         = User::find($id);
+        $profile      = Profile::where('users_id', $id)->first();
+        $pinjamanUser = Peminjaman::where('users_id', $user->id)->get();
+        return view('anggota.detail', ['user' => $user, 'profile' => $profile, 'pinjamanUser' => $pinjamanUser]);
     }
 
     /**
@@ -110,9 +113,9 @@ class AnggotaController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        $profile = Profile::where('users_id',$id)->first();
-        return view('anggota.edit',['user'=>$user,'profile'=>$profile]);
+        $user    = User::find($id);
+        $profile = Profile::where('users_id', $id)->first();
+        return view('anggota.edit', ['user' => $user, 'profile' => $profile]);
     }
 
     /**
@@ -124,45 +127,54 @@ class AnggotaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'=> 'required',
-            'npm'=> 'required',
-            'prodi'=> 'required',
-            'alamat'=> 'required',
-            'noTelp'=> 'required',
-            'photoProfile'=> 'nullable|mimes:jpg,jpeg,png|max:2048'
-        ],
-        [
-            'name.required'=>"Nama tidak boleh kosong",
-            'npm.required'=>"Nomor Induk tidak boleh kosong",
-            'prodi.required'=>"Prodi tidak boleh kosong",
-            'alamat.required'=>"Alamat tidak boleh kosong",
-            'noTelp.required'=>"Nomor Telepon tidak boleh kosong",
-            'photoProfile.mimes' =>"Foto Profile Harus Berupa jpg,jpeg,atau png",
-            'photoProfile.max' => "ukuran gambar tidak boleh lebih dari 2048 MB"
-        ]);
-        $user = User::find($id);
+        $request->validate(
+            [
+                'name' => 'required',
+                'nisn' => 'required',
+                'no_anggota' => 'required',
+                'alamat' => 'required',
+                'no_telp' => 'required',
+                'photoProfile' => 'nullable|mimes:jpg,jpeg,png|max:2048'
+            ],
+            [
+                'name.required' => "Nama tidak boleh kosong",
+                'nisn.required' => "Nomor Induk tidak boleh kosong",
+                'no_anggota.required' => "no_anggota tidak boleh kosong",
+                'alamat.required' => "Alamat tidak boleh kosong",
+                'no_telp.required' => "Nomor Telepon tidak boleh kosong",
+                'photoProfile.mimes' => "Foto Profile Harus Berupa jpg,jpeg,atau png",
+                'photoProfile.max' => "ukuran gambar tidak boleh lebih dari 2048 MB"
+            ]
+        );
+        $user    = User::find($id);
         $profile = Profile::find($id);
 
-        if($request->has('photoProfile')){
-         $path='images/photoProifle';
+        if ($request->has('photoProfile')) {
+            $path = 'images/photoProifle';
 
-         File::delete($path.$profile->photoProfile);
+            if (isset($profile->photoProfile)) {
+                File::delete($path . $profile->photoProfile);
+            }
+            $namaGambar = time() . '.' . $request->photoProfile->extension();
 
-         $namaGambar = time().'.'.$request->photoProfile->extension();
+            $request->photoProfile->move(public_path('images/photoProfile'), $namaGambar);
 
-         $request->photoProfile->move(public_path('images/photoProfile'),$namaGambar);
+            $profile->photoProfile = $namaGambar;
 
-         $profile->photoProfile =$namaGambar;
-
-         $profile->save();
+            $profile->save();
         }
-        $user->name = $request->name;
-        $profile->npm = $request->npm;
-        $profile->prodi = $request->prodi;
-        $profile->alamat = $request->alamat;
-        $profile->noTelp = $request->noTelp;
+        $user->name          = $request->name;
+        $profile->nisn       = $request->nisn;
+        $profile->no_anggota = $request->no_anggota;
+        $profile->alamat     = $request->alamat;
+        $profile->no_telp    = $request->no_telp;
 
+        if ($request->password != null) {
+            $user->password = Hash::make($request->password);
+        }
+        if ($request->username != null) {
+            $user->username = $request->username;
+        }
         $profile->save();
         $user->save();
 

@@ -44,7 +44,13 @@ class PengembalianController extends Controller
                 $dataPinjaman->save();
                 //update status buku
                 $buku         = Buku::findOrFail($request->buku_id);
-                $buku->status = 'In Stock';
+                $buku->stok   = $buku->stok + 1;
+                if ($buku->stok == 0) {
+                    $buku->status = 'Out Of Stock';
+                } else {
+                    $buku->status = 'In Stock';
+                }
+                // $buku->status = 'In Stock';
 
                 $buku->save();
 

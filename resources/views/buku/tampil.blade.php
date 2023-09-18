@@ -40,7 +40,7 @@
                             <img class="card-img-top" style="max-height:180px;"
                                 src="{{ asset('/images/' . $item->gambar) }}">
                         @else
-                            <img class="card-img-top" style="height:200px;" src="{{ asset('/images/noImage.jpg') }}">
+                            <img class="card-img-top" style="max-height:180px;" src="{{ asset('/images/noImage.jpg') }}">
                         @endif
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div class="detai-buku">
@@ -50,14 +50,17 @@
                                 <p class="cart-text m-0">Kode Buku : {{ $item->kode_buku }}</p>
                                 <p class="card-text m-0">Pengarang : <a href="#"
                                         style="text-decoration: none;">{{ $item->pengarang }}</a></p>
-                                <p class="card-text m-0">Kategori : </p>
-                                <p class="text-primary">
-                                    @foreach ($item->kategori_buku as $kategori)
-                                        {{ $kategori->nama }}@if (!$loop->last)
-                                            |
-                                        @endif
-                                    @endforeach
+                                {{-- <p class="card-text m-0"> </p> --}}
+                                <p class="card-text mb-1"> Kategori :
+                                    <span class="text-primary">
+                                        @foreach ($item->kategori_buku as $kategori)
+                                            {{ $kategori->nama }}@if (!$loop->last)
+                                                |
+                                            @endif
+                                        @endforeach
+                                    </span>
                                 </p>
+                                <p class="card-text m-0">Stok : {{ $item->stok }}</p>
                                 <p class="card-text m-0">Status : {{ $item->status }}</p>
                             </div>
                             @if (Auth::user()->isAdmin == 1)

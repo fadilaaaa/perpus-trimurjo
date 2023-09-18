@@ -60,6 +60,15 @@
                 @enderror
 
                 <div class="form-group mb-3">
+                    <label for="stok" class="text-primary font-weight-bold">stok</label>
+                    <input type="number" name="stok" class="form-control" value="{{ old('stok') }}">
+                </div>
+
+                @error('stok')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
+                <div class="form-group mb-3">
                     <label for="pengarang" class="text-primary font-weight-bold">Pengarang</label>
                     <input type="text" name="pengarang" class="form-control" value="{{ old('pengarang') }}">
                 </div>

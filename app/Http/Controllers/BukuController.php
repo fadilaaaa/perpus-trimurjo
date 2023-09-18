@@ -61,6 +61,7 @@ class BukuController extends Controller
                 'pengarang' => 'required',
                 'penerbit' => 'required',
                 'tahun_terbit' => 'required',
+                'stok' => 'required',
                 'deskripsi' => 'required',
                 'gambar' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             ],
@@ -73,6 +74,7 @@ class BukuController extends Controller
                 'penerbit.requiered' => 'penerbit tidak boleh kosong',
                 'tahun_terbit.required' => 'harap isi tahun terbit',
                 'deskripsi.required' => 'deskripsi tidak boleh kosong',
+                'stok.required' => 'stok tidak boleh kosong',
                 'gambar.mimes' => 'Gambar Harus Berupa jpg,jpeg,atau png',
                 'gambar.max' => 'ukuran gambar tidak boleh lebih dari 2048 MB',
             ],
@@ -88,6 +90,7 @@ class BukuController extends Controller
                 'pengarang' => $request['pengarang'],
                 'penerbit' => $request['penerbit'],
                 'tahun_terbit' => $request['tahun_terbit'],
+                'stok' => $request['stok'],
                 'deskripsi' => $request['deskripsi'],
                 'gambar' => $nama_gambar
             ]);
@@ -147,6 +150,7 @@ class BukuController extends Controller
                 'pengarang' => 'required',
                 'penerbit' => 'required',
                 'tahun_terbit' => 'required',
+                'stok' => 'required',
                 'deskripsi' => 'required',
                 'gambar' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             ],
@@ -156,6 +160,7 @@ class BukuController extends Controller
                 'penerbit.requiered' => 'penerbit tidak boleh kosong',
                 'tahun_terbit.required' => 'harap isi tahun terbit',
                 'deskripsi.required' => 'deskripsi tidak boleh kosong',
+                'stok.required' => 'stok tidak boleh kosong',
                 'gambar.mimes' => 'Gambar Harus Berupa jpg,jpeg,atau png',
                 'gambar.max' => 'ukuran gambar tidak boleh lebih dari 2048 MB',
             ],
@@ -178,6 +183,7 @@ class BukuController extends Controller
         $buku->pengarang    = $request->pengarang;
         $buku->penerbit     = $request->penerbit;
         $buku->tahun_terbit = $request->tahun_terbit;
+        $buku->stok         = $request->stok;
         $buku->deskripsi    = $request->deskripsi;
         $buku->kategori_buku()->sync($request->kategori_buku);
         $buku->save();

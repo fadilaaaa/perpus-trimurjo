@@ -22,6 +22,7 @@ class CreateBukuTable extends Migration
             $table->string('tahun_terbit');
             $table->text('deskripsi');
             $table->string('gambar')->nullable();
+            $table->integer('stok');
             $table->string('status')->default('In Stock');
             $table->timestamps();
         });

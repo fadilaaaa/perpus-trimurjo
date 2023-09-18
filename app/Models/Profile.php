@@ -15,7 +15,7 @@ class Profile extends Model
         'no_anggota',
         'alamat',
         'jenis_kelamin',
-
+        'no_telp',
         'photoProfile',
         'users_id'
     ];

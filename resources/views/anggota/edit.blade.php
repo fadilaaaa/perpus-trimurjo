@@ -26,28 +26,30 @@
             @error('name')
                 <div class="alert-danger"> {{ $message }}</div>
             @enderror
-
+            {{-- @dd($user) --}}
             <div class="form-group mx-4 my-2">
-                <label for="nama" class="text-md text-primary font-weight-bold">Nomor Induk Masiswa</label>
-                <input type="text" name="npm" class="form-control" value="{{ old('npm', $profile->npm) }}">
+                <label for="nisn" class="text-md text-primary font-weight-bold">Nomor Induk Siswa Nasional</label>
+                <input type="text" id="nisn" class="form-control @error('nisn') is-invalid @enderror" name="nisn"
+                    value="{{ old('nisn', $profile->nisn) }}">
             </div>
 
-            @error('npm')
+            @error('nisn')
                 <div class="alert-danger"> {{ $message }}</div>
             @enderror
 
             <div class="form-group mx-4 my-2">
-                <label for="nama" class="text-md text-primary font-weight-bold">Program Studi</label>
-                <input type="text"  name= "prodi" class="form-control" value="{{ old('prodi', $profile->prodi) }}">
+                <label for="no_anggota" class="text-md text-primary font-weight-bold">No Anggota</label>
+                <input type="text" id="no_anggota" class="form-control @error('no_anggota') is-invalid @enderror"
+                    name="no_anggota" value="{{ old('no_anggota', $profile->no_anggota) }}">
             </div>
 
-            @error('prodi')
+            @error('no_anggota')
                 <div class="alert-danger mx-2"> {{ $message }}</div>
             @enderror
 
             <div class="form-group mx-4 my-2">
                 <label for="nama" class="text-md text-primary font-weight-bold">Alamat</label>
-                <input type="text" name ="alamat" class="form-control" value="{{ old('alamat', $profile->alamat) }}">
+                <input type="text" name="alamat" class="form-control" value="{{ old('alamat', $profile->alamat) }}">
             </div>
 
             @error('alamat')
@@ -55,14 +57,28 @@
             @enderror
 
             <div class="form-group mx-4 my-2">
-                <label for="nama" class="text-md text-primary font-weight-bold">Nomor Telepon</label>
-                <input type="text" name="noTelp" class="form-control" value="{{ old('noTelp', $profile->noTelp) }}">
+                <label for="no_telp" class="text-md text-primary font-weight-bold">Nomor Telepon</label>
+                <input type="text" id="no_telp" class="form-control @error('no_telp') is-invalid @enderror"
+                    name="no_telp" value="{{ old('no_telp', $profile->no_telp) }}">
             </div>
-
-            @error('noTelp')
+            {{-- @dd($profile) --}}
+            @error('no_telp')
                 <div class="alert-danger"> {{ $message }}</div>
             @enderror
 
+            <div class="form-group mx-4 my-2">
+                <label for="kelas" class="text-md text-primary font-weight-bold">Username</label>
+                <input name="username" class="form-control" value="{{ old('username', $user->username) }}">
+            </div>
+            <div class="form-group mx-4 my-2">
+                <label for="kelas" class="text-md text-primary font-weight-bold">Perbarui Password</label>
+                <input name="password" class="form-control">
+            </div>
+            {{-- @dd($profile->photoProfile) --}}
+            <div class="col-2">
+                <img src="{{ asset('/images/photoProfile/' . $profile->photoProfile) }}"
+                    style="width:150px;height:150px;border-radius:100px">
+            </div>
             <div class="form-group mx-4 my-2">
                 <label for="gambar" class="text-md text-primary font-weight-bold">Tambah Photo Profile</label>
                 <div class="custom-file">
